@@ -1,0 +1,16 @@
+src/tests
+node_modules
+.env
+.editorconfig
+*.heapprofile
+*.cpuprofile
+*.heapsnapshot
+.DS_Store
+logs
+*.log
+npm-debug.log*
+.cache/
+.history/
+Thumbs.db
+[Dd]esktop.ini
+client.*

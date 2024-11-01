@@ -1,0 +1,33 @@
+{
+  "name": "bulky-userbot",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "imports": {
+    "#*": "./src/*",
+    "#package": "./package.json"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nubovik01/bulky-bot.git"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "bulk",
+    "manager"
+  ],
+  "author": "qwkrtezzz (https://nubovik01.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nubovik01/bulky-bot/issues"
+  },
+  "homepage": "https://github.com/nubovik01/bulky-bot#readme",
+  "dependencies": {
+    "@mtcute/dispatcher": "^0.17.2",
+    "@mtcute/node": "^0.17.0",
+    "dotenv": "^16.4.5"
+  }
+}
