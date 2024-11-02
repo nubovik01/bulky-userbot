@@ -1,10 +1,10 @@
-require("dotenv").config();
-const { TelegramClient } = require("@mtcute/node");
+const { TelegramClient, html } = require("@mtcute/node");
 const { Dispatcher } = require("@mtcute/dispatcher");
+const env = require("./env.js");
 
 const userbot = new TelegramClient({
-  apiId: process.env.API_ID,
-  apiHash: process.env.API_HASH,
+  apiId: env.API_ID,
+  apiHash: env.API_HASH,
   enableErrorReporting: true,
   initConnectionOptions: {
     deviceModel: "kavaynen'ko >.< (made w/ mtcute by nbvk.kittyy.ru)"
@@ -18,23 +18,36 @@ const _chunk = (array, size) => array.reduce((chunk, message, index) => (
 ), []);
 
 dispatcher.onNewMessage(async context => {
-  if (context.sender.id != +process.env.OWNER_ID || !context.text) return;
+  if (context.sender.id != self.id || !context.text) return;
 
-  const bulkCommand = context.text.match(`^${process.env.USERBOT_PREFIX}bulk (.*)`);
+  const bulkCommand = context.text.match(`^${env.USERBOT_PREFIX}bulk (.*)`);
   if (!bulkCommand) return;
 
-  const searchResults = userbot.iterSearchGlobal({ query: bulkCommand[1].replace("-g ", "") });
+  const searchResults = userbot.iterSearchGlobal({
+    query: bulkCommand[1].replace("-g ", "").replace("-l ", "")
+  });
   const _results = [];
 
+  const isIncludes = (flag) => context.text.includes(flag);
+
   for await (const result of searchResults) {
-    if (context.text.includes("-g") || result.chat.id === context.chat.id) {
-      _results.push(result);
+    if (isIncludes("-g") || result.chat.id === context.chat.id) {
+      if (isIncludes("-l") && result.sender.id === self.id || !isIncludes("-l")) {
+        _results.push(result);
+      };
     };
   };
 
   for (const chunk of _chunk(_results, 100)) {
     await userbot.deleteMessages(chunk);
   };
+
+  return await userbot.sendText(context.chat.id, html`<emoji id="5210956306952758910">👀</emoji>`);
 });
 
-userbot.start().then((bot) => console.log("@%s — ✅", bot.username));
+async function _main() {
+  self = await userbot.start();
+  console.log("@%s (%s) — ✅", self.username, self.id);
+};
+
+_main();
