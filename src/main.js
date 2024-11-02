@@ -18,19 +18,16 @@ const _chunk = (array, size) => array.reduce((chunk, message, index) => (
 ), []);
 
 dispatcher.onNewMessage(async context => {
-  if (context.sender.id != +process.env.OWNER_ID) return;
+  if (context.sender.id != +process.env.OWNER_ID || !context.text) return;
 
-  const bulkCommand = context.text?.match(`^${process.env.USERBOT_PREFIX}bulk (.*)`);
+  const bulkCommand = context.text.match(`^${process.env.USERBOT_PREFIX}bulk (.*)`);
   if (!bulkCommand) return;
 
   const searchResults = userbot.iterSearchGlobal({ query: bulkCommand[1].replace("-g ", "") });
-
   const _results = [];
 
   for await (const result of searchResults) {
-    if (context.text.includes("-g")) {
-      _results.push(result);
-    } else if (result.chat.id === context.chat.id) {
+    if (context.text.includes("-g") || result.chat.id === context.chat.id) {
       _results.push(result);
     };
   };
