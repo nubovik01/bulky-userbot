@@ -7,7 +7,7 @@ const userbot = new TelegramClient({
   apiHash: env.API_HASH,
   enableErrorReporting: true,
   initConnectionOptions: {
-    deviceModel: "kavaynen'ko >.< (made w/ mtcute by nbvk.kittyy.ru)"
+    deviceModel: "r.kittyy.ru/#bulky (made w/ mtcute)"
   }
 });
 
