@@ -28,7 +28,7 @@ dispatcher.onNewMessage(async context => {
   });
   const _results = [];
 
-  const isIncludes = (flag) => context.text.includes(flag);
+  const isIncludes = (flag) => context.text.split(' ').includes(flag);
 
   for await (const result of searchResults) {
     if (isIncludes("-g") || result.chat.id === context.chat.id) {
