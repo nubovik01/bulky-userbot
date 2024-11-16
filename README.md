@@ -24,10 +24,10 @@ You can combine flags for better results! For example, this command will delete 
 Otherwise, without using flags, messages from **ALL** users in the PM (or chat) where the command was executed will be deleted.
 
 ## screenshots
-<img width="387" alt="image" src="https://github.com/user-attachments/assets/8f47e9f6-61db-4cb8-a555-53e3e78284c7"><br>
-<img width="387" alt="image" src="https://github.com/user-attachments/assets/04cdd690-d30f-4d13-b7fb-caf07e983c18"><br>
-<img width="387" alt="image" src="https://github.com/user-attachments/assets/9ce8f0eb-c81d-4b39-8d77-1d004353a831"><br>
-<img width="387" alt="image" src="https://github.com/user-attachments/assets/c3761ab0-6eee-4189-8d32-358dbe830981">
+<img width="387" alt="image" src="https://bankai.kittyy.ru/yomu/bulky/flood.png"><br>
+<img width="387" alt="image" src="https://bankai.kittyy.ru/yomu/bulky/bulk-1.png"><br>
+<img width="387" alt="image" src="https://bankai.kittyy.ru/yomu/bulky/bulk-2.png"><br>
+<img width="387" alt="image" src="https://bankai.kittyy.ru/yomu/bulky/kawaii.png">
 
 ## install node (on macos/windows)
 

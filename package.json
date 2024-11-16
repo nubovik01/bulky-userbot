@@ -6,25 +6,23 @@
     "#*": "./src/*",
     "#package": "./package.json"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nubovik01/bulky-bot.git"
+    "url": "git+https://github.com/nubovik01/bulky-userbot.git"
   },
   "keywords": [
     "telegram",
     "bot",
-    "bulk",
-    "manager"
+    "bulk"
   ],
   "author": "qwkrtezzz (https://nubovik01.github.io)",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nubovik01/bulky-bot/issues"
+    "url": "https://github.com/nubovik01/bulky-userbot/issues"
   },
-  "homepage": "https://github.com/nubovik01/bulky-bot#readme",
+  "homepage": "https://github.com/nubovik01/bulky-userbot#readme",
   "dependencies": {
     "@mtcute/dispatcher": "^0.17.2",
     "@mtcute/node": "^0.17.0",
