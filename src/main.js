@@ -41,13 +41,11 @@ dispatcher.onNewMessage(async context => {
   for (const chunk of _chunk(_results, 100)) {
     await userbot.deleteMessages(chunk);
   };
-
-  return await userbot.sendText(context.chat.id, html`<emoji id="5210956306952758910">👀</emoji>`);
 });
 
 async function _main() {
   self = await userbot.start();
-  console.log("@%s (%s) — ✅", self.username, self.id);
+  console.log("@%s (%s) — ✅", self.username || self.firstName, self.id);
 };
 
 _main();
