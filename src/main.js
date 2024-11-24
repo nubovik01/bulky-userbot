@@ -1,4 +1,4 @@
-const { TelegramClient, html } = require("@mtcute/node");
+const { TelegramClient } = require("@mtcute/node");
 const { Dispatcher } = require("@mtcute/dispatcher");
 const env = require("./env.js");
 
@@ -6,9 +6,7 @@ const userbot = new TelegramClient({
   apiId: env.API_ID,
   apiHash: env.API_HASH,
   enableErrorReporting: true,
-  initConnectionOptions: {
-    deviceModel: "r.kittyy.ru/#bulky (made w/ mtcute)"
-  }
+  initConnectionOptions: { deviceModel: "r.kittyy.ru/#bulky (made w/ mtcute)" }
 });
 
 const dispatcher = Dispatcher.for(userbot);
@@ -17,24 +15,24 @@ const _chunk = (array, size) => array.reduce((chunk, message, index) => (
   index % size ? chunk[chunk.length - 1].push(message) : chunk.push([message]), chunk
 ), []);
 
-dispatcher.onNewMessage(async context => {
+dispatcher.onNewMessage(async (context) => {
   if (context.sender.id != self.id || !context.text) return;
 
   const bulkCommand = context.text.match(`^${env.USERBOT_PREFIX}bulk (.*)`);
   if (!bulkCommand) return;
 
-  const searchResults = userbot.iterSearchGlobal({
-    query: bulkCommand[1].replace("-g ", "").replace("-l ", "")
-  });
+  const query = bulkCommand[1].trim();
+  const options = { global: query.includes("-g"), self: !query.includes("-l") };
+
+  const searchResults = userbot.iterSearchGlobal({ query: query.replace(/-g|-l /g, "") });
+
   const _results = [];
-
-  const isIncludes = (flag) => context.text.split(' ').includes(flag);
-
   for await (const result of searchResults) {
-    if (isIncludes("-g") || result.chat.id === context.chat.id) {
-      if (isIncludes("-l") && result.sender.id === self.id || !isIncludes("-l")) {
-        _results.push(result);
-      };
+    if (
+      (options.global || result.chat.id === context.chat.id)
+      && (options.self || result.sender.id !== self.id)
+    ) {
+      _results.push(result);
     };
   };
 
